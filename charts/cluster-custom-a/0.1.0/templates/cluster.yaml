@@ -1,0 +1,336 @@
+apiVersion: management.cattle.io/v3
+kind: Cluster
+metadata:
+  name: {{ .Values.clusterName }}
+spec:
+  agentImageOverride: ""
+  answers: {}
+  description: ""
+  desiredAgentImage: ""
+  desiredAuthImage: ""
+  displayName: {{ .Values.clusterDisplayName | quote }}
+  dockerRootDir: /var/lib/docker
+  enableClusterAlerting: false
+  enableClusterMonitoring: false
+  enableNetworkPolicy: false
+  fleetWorkspaceName: fleet-default
+  internal: false
+  localClusterAuthEndpoint:
+    enabled: false
+  rancherKubernetesEngineConfig:
+    addonJobTimeout: 45
+    authentication:
+      strategy: x509
+    authorization: {}
+    bastionHost: {}
+    cloudProvider: {}
+    clusterName: quickstart-aws-custom
+    ignoreDockerVersion: true
+    ingress: {}
+    kubernetesVersion: v1.19.9-rancher1-1
+    monitoring: {}
+    network:
+      plugin: canal
+    restore: {}
+    rotateEncryptionKey: false
+    services:
+      etcd:
+        backupConfig:
+          enabled: true
+          intervalHours: 12
+          retention: 6
+          s3BackupConfig: null
+      kubeApi: {}
+      kubeController: {}
+      kubelet: {}
+      kubeproxy: {}
+      scheduler: {}
+    sshAgentAuth: false
+    systemImages: {}
+    upgradeStrategy:
+      maxUnavailableControlplane: "1"
+      maxUnavailableWorker: 10%
+      nodeDrainInput:
+        gracePeriod: -1
+        ignoreDaemonSets: true
+        timeout: 120
+  windowsPreferedCluster: false
+status:
+  agentImage: rancher/rancher-agent:v2.5.8
+  allocatable:
+    cpu: "12"
+    memory: 47726580Ki
+    pods: "330"
+  apiEndpoint: https://3.80.232.63:6443
+  appliedEnableNetworkPolicy: false
+  appliedPodSecurityPolicyTemplateId: ""
+  appliedSpec:
+    agentImageOverride: ""
+    answers: {}
+    description: Custom workload cluster created by Rancher quickstart
+    desiredAgentImage: ""
+    desiredAuthImage: ""
+    displayName: quickstart-aws-custom
+    dockerRootDir: /var/lib/docker
+    enableClusterAlerting: false
+    enableClusterMonitoring: false
+    enableNetworkPolicy: false
+    fleetWorkspaceName: fleet-default
+    internal: false
+    localClusterAuthEndpoint:
+      enabled: false
+    rancherKubernetesEngineConfig:
+      addonJobTimeout: 45
+      authentication:
+        strategy: x509
+      authorization: {}
+      bastionHost: {}
+      cloudProvider: {}
+      clusterName: quickstart-aws-custom
+      ignoreDockerVersion: true
+      ingress: {}
+      kubernetesVersion: v1.19.9-rancher1-1
+      monitoring: {}
+      network:
+        plugin: canal
+      nodes:
+      - address: 3.80.232.63
+        hostnameOverride: ip-172-31-95-69
+        internalAddress: 172.31.95.69
+        nodeName: c-w6dnf:m-476a4a222dd7
+        port: "22"
+        role:
+        - etcd
+        - controlplane
+        - worker
+        user: root
+      - address: 3.239.55.91
+        hostnameOverride: ip-172-31-86-28
+        internalAddress: 172.31.86.28
+        nodeName: c-w6dnf:m-4c8347f31d70
+        port: "22"
+        role:
+        - etcd
+        - controlplane
+        - worker
+        user: root
+      - address: 34.231.70.143
+        hostnameOverride: ip-172-31-94-135
+        internalAddress: 172.31.94.135
+        nodeName: c-w6dnf:m-b877aede4044
+        port: "22"
+        role:
+        - etcd
+        - controlplane
+        - worker
+        user: root
+      restore: {}
+      rotateEncryptionKey: false
+      services:
+        etcd:
+          backupConfig:
+            enabled: true
+            intervalHours: 12
+            retention: 6
+            s3BackupConfig: null
+        kubeApi: {}
+        kubeController: {}
+        kubelet: {}
+        kubeproxy: {}
+        scheduler: {}
+      sshAgentAuth: false
+      systemImages:
+        aciCniDeployContainer: noiro/cnideploy:5.1.1.0.1ae238a
+        aciControllerContainer: noiro/aci-containers-controller:5.1.1.0.1ae238a
+        aciGbpServerContainer: noiro/gbp-server:5.1.1.0.1ae238a
+        aciHostContainer: noiro/aci-containers-host:5.1.1.0.1ae238a
+        aciMcastContainer: noiro/opflex:5.1.1.0.1ae238a
+        aciOpflexContainer: noiro/opflex:5.1.1.0.1ae238a
+        aciOpflexServerContainer: noiro/opflex-server:5.1.1.0.1ae238a
+        aciOvsContainer: noiro/openvswitch:5.1.1.0.1ae238a
+        alpine: rancher/rke-tools:v0.1.72
+        calicoCni: rancher/calico-cni:v3.16.5
+        calicoControllers: rancher/calico-kube-controllers:v3.16.5
+        calicoCtl: rancher/calico-ctl:v3.16.5
+        calicoFlexVol: rancher/calico-pod2daemon-flexvol:v3.16.5
+        calicoNode: rancher/calico-node:v3.16.5
+        canalCni: rancher/calico-cni:v3.16.5
+        canalControllers: rancher/calico-kube-controllers:v3.16.5
+        canalFlannel: rancher/coreos-flannel:v0.13.0-rancher1
+        canalFlexVol: rancher/calico-pod2daemon-flexvol:v3.16.5
+        canalNode: rancher/calico-node:v3.16.5
+        certDownloader: rancher/rke-tools:v0.1.72
+        coredns: rancher/coredns-coredns:1.7.0
+        corednsAutoscaler: rancher/cluster-proportional-autoscaler:1.8.1
+        dnsmasq: rancher/k8s-dns-dnsmasq-nanny:1.15.10
+        etcd: rancher/coreos-etcd:v3.4.13-rancher1
+        flannel: rancher/coreos-flannel:v0.13.0-rancher1
+        flannelCni: rancher/flannel-cni:v0.3.0-rancher6
+        ingress: rancher/nginx-ingress-controller:nginx-0.35.0-rancher2
+        ingressBackend: rancher/nginx-ingress-controller-defaultbackend:1.5-rancher1
+        kubedns: rancher/k8s-dns-kube-dns:1.15.10
+        kubednsAutoscaler: rancher/cluster-proportional-autoscaler:1.8.1
+        kubednsSidecar: rancher/k8s-dns-sidecar:1.15.10
+        kubernetes: rancher/hyperkube:v1.19.9-rancher1
+        kubernetesServicesSidecar: rancher/rke-tools:v0.1.72
+        metricsServer: rancher/metrics-server:v0.3.6
+        nginxProxy: rancher/rke-tools:v0.1.72
+        nodelocal: rancher/k8s-dns-node-cache:1.15.13
+        podInfraContainer: rancher/pause:3.2
+        weaveCni: weaveworks/weave-npc:2.7.0
+        weaveNode: weaveworks/weave-kube:2.7.0
+        windowsPodInfraContainer: rancher/kubelet-pause:v0.1.6
+      upgradeStrategy:
+        maxUnavailableControlplane: "1"
+        maxUnavailableWorker: 10%
+        nodeDrainInput:
+          gracePeriod: -1
+          ignoreDaemonSets: true
+          timeout: 120
+    windowsPreferedCluster: false
+  authImage: ""
+  caCert: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN3akNDQWFxZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFTTVJBd0RnWURWUVFERXdkcmRXSmwKTFdOaE1CNFhEVEl4TURZeU1qRTNNRGMxT0ZvWERUTXhNRFl5TURFM01EYzFPRm93RWpFUU1BNEdBMVVFQXhNSAphM1ZpWlMxallUQ0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQUtEMXBGeHBTNU1CCndDcmlrU2l5RVRKWWlxWkRwUFNYWmxMdlVyTmd1akZvYWVTbjJpNXN1S2J1dGJiMmJFU3EzczJFRzA1STBGTzMKa2lEb0cySVU0aVRsMlhoOWdOS2loUGViaXNuSi9BdXJnT1oxRjNTMVA0NWMzY2NXTjJhcUl4aGZtU1dOb3NOMAo5VGE1YUU5Rk41ZXpMUkl1RTg0WmNIMUJCdHZ3Yk1QRVZDOXVzbWdvWHBhc2E1RmpKYWpKSWhnc3ovWnRzMDNpCm50RGN4TG1Ya0N3R1BWNGUyZlNVZ3VKcTBjZ3l1MnN3SXJaYVNtZjFwZG44d0FValFlZ0NsK2RSMTBvcVN2VHYKZnVHd1FzMlB5NWJvOWdqMDlVN1lndWJqY1ZoR3JsQWFKd29lOUZtYjBNR1dhZ2M1eUhMN1dVcGQvRk1lNy9MUwpvMzBGRDA1R3dna0NBd0VBQWFNak1DRXdEZ1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CCkFmOHdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBR0ZlbndSQ3FiT3YxczlIbnY4MEljZlJyTTJyVzdsdUdOajEKVFFYSmJ6a2szV1JoekRaU04vYldIelZCVlpqSDRZRXFnd0kzL1RaZXZUR0U2Zy9oL212bzFFS2cyaDJocmxpTQpORXNjeFhRUk5GYXM1L0J2Y0VLY2lFWENJclJxNDZYSFVWSEhkS0Z4VzJSOUI1aWVGTndnN1lRTTV4VE04MDNWClJyRXhxV2JrNVBqNUlpZEkvN1htclFYQnBPTStaR25YOGkvZUdZMjJhKytHR1hnZ3dHY1RLeXhkUDdMWEFjMjQKbExsanhRTEdMZ0hDZlF5dVFTUG5NSEp1ZHdqNVQxNWxtQm1pRlVTczNvR3o5Sm4yNTZxVmtMeTZyb3RGNk1JTwpyL2tqTmpna3Ewa0lhVUlSRXk1VTllNE5BN0toMFEzcW9VQ2UyWmFEcEg1aklBY0NRVVE9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+  capabilities:
+    ingressCapabilities:
+    - {}
+    loadBalancerCapabilities: {}
+    nodePortRange: 30000-32767
+    taintSupport: true
+  capacity:
+    cpu: "12"
+    memory: 48033780Ki
+    pods: "330"
+  certificatesExpiration:
+    kube-apiserver:
+      expirationDate: "2031-06-20T17:08:05Z"
+    kube-apiserver-proxy-client:
+      expirationDate: "2031-06-20T17:08:00Z"
+    kube-ca:
+      expirationDate: "2031-06-20T17:07:58Z"
+    kube-controller-manager:
+      expirationDate: "2031-06-20T17:07:59Z"
+    kube-etcd-172-31-86-28:
+      expirationDate: "2031-06-20T17:08:06Z"
+    kube-etcd-172-31-94-135:
+      expirationDate: "2031-06-20T17:08:06Z"
+    kube-etcd-172-31-95-69:
+      expirationDate: "2031-06-20T17:08:06Z"
+    kube-node:
+      expirationDate: "2031-06-20T17:07:59Z"
+    kube-proxy:
+      expirationDate: "2031-06-20T17:07:59Z"
+    kube-scheduler:
+      expirationDate: "2031-06-20T17:07:59Z"
+  componentStatuses:
+  - conditions:
+    - message: ok
+      status: "True"
+      type: Healthy
+    name: controller-manager
+  - conditions:
+    - message: '{"health":"true"}'
+      status: "True"
+      type: Healthy
+    name: etcd-0
+  - conditions:
+    - message: '{"health":"true"}'
+      status: "True"
+      type: Healthy
+    name: etcd-1
+  - conditions:
+    - message: '{"health":"true"}'
+      status: "True"
+      type: Healthy
+    name: etcd-2
+  - conditions:
+    - message: ok
+      status: "True"
+      type: Healthy
+    name: scheduler
+  conditions:
+  - status: "True"
+    type: Pending
+  - lastUpdateTime: "2021-06-22T17:11:02Z"
+    status: "True"
+    type: Provisioned
+  - lastUpdateTime: "2021-06-22T17:11:17Z"
+    status: "True"
+    type: Waiting
+  - lastUpdateTime: "2021-06-22T17:06:18Z"
+    status: "True"
+    type: BackingNamespaceCreated
+  - lastUpdateTime: "2021-06-22T17:06:18Z"
+    status: "True"
+    type: DefaultProjectCreated
+  - lastUpdateTime: "2021-06-22T17:06:18Z"
+    status: "True"
+    type: SystemProjectCreated
+  - lastUpdateTime: "2021-06-22T17:06:18Z"
+    status: "True"
+    type: InitialRolesPopulated
+  - lastUpdateTime: "2021-06-22T17:06:19Z"
+    status: "True"
+    type: CreatorMadeOwner
+  - lastUpdateTime: "2021-06-22T17:06:25Z"
+    status: "True"
+    type: NoDiskPressure
+  - lastUpdateTime: "2021-06-22T17:06:25Z"
+    status: "True"
+    type: NoMemoryPressure
+  - lastUpdateTime: "2021-06-22T17:11:03Z"
+    status: "True"
+    type: GlobalAdminsSynced
+  - lastUpdateTime: "2021-06-22T17:11:04Z"
+    status: "False"
+    type: AlertingEnabled
+  - lastUpdateTime: "2021-06-22T17:11:08Z"
+    status: "True"
+    type: SystemAccountCreated
+  - lastUpdateTime: "2021-06-22T17:11:08Z"
+    status: "True"
+    type: AgentDeployed
+  - lastUpdateTime: "2021-06-22T17:11:08Z"
+    status: "False"
+    type: PrometheusOperatorDeployed
+  - lastUpdateTime: "2021-06-22T17:11:17Z"
+    status: "True"
+    type: Ready
+  - lastUpdateTime: "2021-06-22T17:11:31Z"
+    status: "True"
+    type: Updated
+  - lastUpdateTime: "2021-06-22T17:11:26Z"
+    status: "True"
+    type: ServiceAccountMigrated
+  driver: rancherKubernetesEngine
+  eksStatus:
+    managedLaunchTemplateID: ""
+    managedLaunchTemplateVersions: null
+    privateRequiresTunnel: null
+    securityGroups: null
+    subnets: null
+    upstreamSpec: null
+    virtualNetwork: ""
+  gkeStatus:
+    privateRequiresTunnel: null
+    upstreamSpec: null
+  limits:
+    cpu: 10m
+    memory: 360Mi
+    pods: "0"
+  nodeVersion: 1
+  provider: rke
+  requested:
+    cpu: 980m
+    memory: 170Mi
+    pods: "17"
+  serviceAccountToken: eyJhbGciOiJSUzI1NiIsImtpZCI6IkhoQkVEUHJZTzdPVEZRRi0yamN3ZzhIakxkbC1IMTlLSW1GQnZWbkdVNmsifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJjYXR0bGUtc3lzdGVtIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImtvbnRhaW5lci1lbmdpbmUtdG9rZW4td3c5bmMiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoia29udGFpbmVyLWVuZ2luZSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjM2MzBkYTBmLWIzNjctNDY4OS05ZGVkLTBlMWY2NjY1MDk1YyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpjYXR0bGUtc3lzdGVtOmtvbnRhaW5lci1lbmdpbmUifQ.2CjzqBzfiwcbJpNZPz02RSo8doFUGO_h5TP6oc-ldIkRC0w4Irf-bMtgj7Fqx4ERZFEZcC-jk1AVm74EqN5XSTVuF47SSvtZdY7-BC4A74CNilKZU0LIgtY4qJOyFBnE6dK-iHLriQSIl-DOyU4BeHWqofCrwUPcm1UbdxS3hKuJvTH7sUnESAjWDo8ie6Yrc7UXzVJeHJJPDpJByPBHow4Q3cg7mdxsbByPDw9IGCsspiSyUl3QihY0GAcj1RedhlI-W1MZxwAHJZYJ7jwgRE5AL_s9CVsQekwbChzVQQBb5J4LC_bMAYSDTrSK7mnVkCx3k9QTtThe_8XRwVPzoA
+  version:
+    buildDate: "2021-03-18T01:00:06Z"
+    compiler: gc
+    gitCommit: 9dd794e454ac32d97cde41ae10be801ae98f75df
+    gitTreeState: clean
+    gitVersion: v1.19.9
+    goVersion: go1.15.8
+    major: "1"
+    minor: "19"
+    platform: linux/amd64
